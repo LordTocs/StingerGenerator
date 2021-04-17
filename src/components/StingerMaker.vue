@@ -188,17 +188,28 @@
         <v-card>
           <v-card-title> Exports </v-card-title>
           <v-card-actions>
-            <v-btn large> Export Stinger </v-btn>
+            <v-btn large @click="exportStinger"> Export Stinger </v-btn>
             <v-btn large> Export Mask </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
+    <v-overlay :value="exporting">
+      <h1>Exporting</h1>
+      <v-progress-circular
+        indeterminate
+        color="primary"
+        :size="100"
+        :width="15"
+      />
+    </v-overlay>
   </v-container>
 </template>
 
 <script>
+import { getStingerBlob } from "../utils/stinger";
 import StingerCanvas from "./stinger/StingerCanvas.vue";
+import { saveAs } from "file-saver";
 export default {
   components: { StingerCanvas },
   data() {
@@ -226,6 +237,7 @@ export default {
       time: 0,
       playing: false,
       start: null,
+      exporting: false,
     };
   },
   methods: {
@@ -301,6 +313,16 @@ export default {
         this.stinger.panels[index].imageFile = null;
         this.stinger.panels[index].image = null;
       }
+    },
+    async exportStinger() {
+      this.exporting = true;
+
+      const blob = await getStingerBlob(this.stinger);
+
+      console.log(blob);
+
+      saveAs(blob, "stinger.webm");
+      this.exporting = false;
     },
   },
   mounted() {
