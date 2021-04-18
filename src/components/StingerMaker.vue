@@ -207,7 +207,7 @@
 </template>
 
 <script>
-import { getStingerBlob } from "../utils/stinger";
+import { stingerToWebM } from "../utils/webm";
 import StingerCanvas from "./stinger/StingerCanvas.vue";
 import { saveAs } from "file-saver";
 export default {
@@ -317,7 +317,7 @@ export default {
     async exportStinger() {
       this.exporting = true;
 
-      const blob = await getStingerBlob(this.stinger);
+      const blob = await stingerToWebM(this.stinger);
 
       console.log(blob);
 
