@@ -103,7 +103,7 @@ export default {
 
       try {
         this.blob = await stingerToWebM(this.stinger, {
-          frameRate: 10,
+          frameRate: 60,
           progress: (ratio) => {
             this.progress = ratio.ratio;
             console.log(ratio.ratio);
