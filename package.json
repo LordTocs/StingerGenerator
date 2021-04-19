@@ -11,8 +11,10 @@
     "@ffmpeg/ffmpeg": "^0.9.7",
     "core-js": "^3.6.5",
     "file-saver": "^2.0.5",
+    "v-scroll-threshold": "^2.0.0",
     "vue": "^2.6.11",
     "vue-kofi": "^1.1.1",
+    "vue-sticky-directive": "0.0.10",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2"
   },

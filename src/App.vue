@@ -9,11 +9,19 @@
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-main>
+    <v-main sticky-container>
       <stinger-maker />
     </v-main>
 
-    <v-footer height="200"> </v-footer>
+    <v-footer height="200">
+      <div style="width: 100%">
+        <p class="text-center">
+          Also checkout
+          <a href="https://www.github.com/LordTocs/CastMate"> CastMate </a>
+        </p>
+        <p class="text-center">© Scott Resnick 2021</p>
+      </div>
+    </v-footer>
   </v-app>
 </template>
 

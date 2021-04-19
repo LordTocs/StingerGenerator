@@ -14,13 +14,23 @@
           <vue-kofi uid="lordtocs" />
         </span>
         <span style="margin-right: 5px">
-          <v-btn color="#9146FF" href="https://www.twitch.tv/LordTocs" target="_blank"> <img src="/TwitchGlitchWhite.png" style="width: 20px; margin-right: 5px;" /> LordTocs </v-btn>
+          <v-btn
+            color="#9146FF"
+            href="https://www.twitch.tv/LordTocs"
+            target="_blank"
+          >
+            <img
+              src="/TwitchGlitchWhite.png"
+              style="width: 20px; margin-right: 5px"
+            />
+            LordTocs
+          </v-btn>
         </span>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <v-card>
+        <v-card v-sticky class="preview-card">
           <v-card-title> Preview </v-card-title>
           <v-card-text>
             <v-slider
@@ -332,13 +342,25 @@ export default {
 <style>
 .preview-container {
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .preview-container > .inner {
   height: 500px;
   position: relative;
+}
+
+.top-sticky .preview-container > .inner {
+  height: 100px;
+  position: relative;
+}
+
+.top-sticky.preview-card {
+  width: 200px !important;
+  left: unset !important;
+  right: 10px !important;
+  top: 10px !important;
 }
 
 .no-transition .v-slider__thumb {
