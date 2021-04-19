@@ -1,11 +1,16 @@
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import { drawPanel } from './stinger';
 
-export async function stingerToWebM(stinger, { frameRate } = { frameRate: 60 })
+export async function stingerToWebM(stinger, { frameRate, progress } = { frameRate: 60, progress: null })
 {
-	const ffmpeg = createFFmpeg({ log: true, corePath: 'https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js', });
+	const ffmpeg = createFFmpeg({ log: true, corePath: '/ffmpeg-core.js' /*corePath: 'https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js',*/ });
 	await ffmpeg.load();
 	const frames = Math.ceil(stinger.transitionTime * frameRate);
+
+	if (progress)
+	{
+		ffmpeg.setProgress(progress);
+	}
 
 	const canvas = document.createElement('canvas');
 	canvas.setAttribute('width', stinger.width);
@@ -30,7 +35,7 @@ export async function stingerToWebM(stinger, { frameRate } = { frameRate: 60 })
 	console.log("Encoding");
 	const inputArgs = ['-f', 'image2', '-pixel_format', 'rgba', '-video_size', `${stinger.width}x${stinger.height}`, '-i', '%03d.raw'];
 	//const outputArgs = ['-crf', '50', '-b:v', '0', 'output.webm'];
-	const outputArgs = ['-deadline', 'realtime', 'output.webm'];
+	const outputArgs = ['-deadline', 'realtime', '-row-mt', '1', 'output.webm'];
 
 	await ffmpeg.run('-framerate', String(frameRate), ...inputArgs, ...outputArgs);
 	console.log("Encoding Complete");

@@ -1,8 +1,23 @@
 <template>
   <v-container>
     <h1>OBS Stinger Maker</h1>
-    <h3>Generate a Stinger for OBS!</h3>
-    <v-divider />
+    <p>
+      This tool can generate stinger transitions for OBS in the browser. You can
+      change colors, the speed, the angle, and add your logo. I built this tool
+      because most of the existing tutorials for stingers required After Effects
+      and lots of time. If you have questions feel free to pop into my stream
+      and ask, or if you found the tool useful throw me a buck or two on Ko-Fi.
+    </p>
+    <v-row dense>
+      <v-col class="text-left">
+        <span style="margin-right: 5px">
+          <vue-kofi uid="lordtocs" />
+        </span>
+        <span style="margin-right: 5px">
+          <v-btn color="#9146FF" href="https://www.twitch.tv/LordTocs" target="_blank"> <img src="/TwitchGlitchWhite.png" style="width: 20px; margin-right: 5px;" /> LordTocs </v-btn>
+        </span>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <v-card>
@@ -185,13 +200,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card>
-          <v-card-title> Exports </v-card-title>
-          <v-card-actions>
-            <v-btn large @click="exportStinger"> Export Stinger </v-btn>
-            <v-btn large> Export Mask </v-btn>
-          </v-card-actions>
-        </v-card>
+        <stinger-exporter :stinger="stinger" />
       </v-col>
     </v-row>
     <v-overlay :value="exporting">
@@ -207,11 +216,10 @@
 </template>
 
 <script>
-import { stingerToWebM } from "../utils/webm";
+import StingerExporter from "./stinger/StingerExporter.vue";
 import StingerCanvas from "./stinger/StingerCanvas.vue";
-import { saveAs } from "file-saver";
 export default {
-  components: { StingerCanvas },
+  components: { StingerCanvas, StingerExporter },
   data() {
     return {
       stinger: {
@@ -221,13 +229,13 @@ export default {
         transitionTime: 1.5,
         panels: [
           {
-            color: "#ff0000",
+            color: "#01DADE",
             width: 3000,
             imageStartScale: 1.0,
             imageEndScale: 1.0,
           },
           {
-            color: "#0000ff",
+            color: "#FC00FF",
             width: 2100,
             imageStartScale: 1.0,
             imageEndScale: 1.0,
@@ -313,16 +321,6 @@ export default {
         this.stinger.panels[index].imageFile = null;
         this.stinger.panels[index].image = null;
       }
-    },
-    async exportStinger() {
-      this.exporting = true;
-
-      const blob = await stingerToWebM(this.stinger);
-
-      console.log(blob);
-
-      saveAs(blob, "stinger.webm");
-      this.exporting = false;
     },
   },
   mounted() {
