@@ -16,7 +16,7 @@
     <v-footer height="200">
       <div style="width: 100%">
         <p class="text-center">
-          Also checkout
+          Also check out
           <a href="https://www.github.com/LordTocs/CastMate"> CastMate </a>
         </p>
         <p class="text-center">© Scott Resnick 2021</p>

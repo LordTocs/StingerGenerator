@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-row>
+      <v-col>
+        <v-alert dense outlined type="error" v-if="!$browserDetect.isChrome && !$browserDetect.isEdge">
+          <h3>This tool currently only works in Chrome and Edge! Sorry, I'm working on better browser support.</h3>
+        </v-alert>
+      </v-col>
+    </v-row>
     <h1>OBS Stinger Maker</h1>
     <p>
       This tool can generate stinger transitions for OBS in the browser. You can
@@ -28,6 +35,7 @@
         </span>
       </v-col>
     </v-row>
+
     <v-row>
       <v-col>
         <v-card v-sticky class="preview-card">
