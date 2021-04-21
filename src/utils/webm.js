@@ -3,7 +3,7 @@ import { drawPanel } from './stinger';
 
 export async function stingerToWebM(stinger, { frameRate, progress } = { frameRate: 60, progress: null })
 {
-	const ffmpeg = createFFmpeg({ log: true, corePath: '/ffmpeg-core.js' /*corePath: 'https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js',*/ });
+	const ffmpeg = createFFmpeg({ log: true, corePath: '/stingers/ffmpeg-core.js' /*corePath: 'https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js',*/ });
 	await ffmpeg.load();
 	const frames = Math.ceil(stinger.transitionTime * frameRate);
 

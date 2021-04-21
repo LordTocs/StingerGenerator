@@ -27,7 +27,7 @@
             target="_blank"
           >
             <img
-              src="/TwitchGlitchWhite.png"
+              src="/stingers/TwitchGlitchWhite.png"
               style="width: 20px; margin-right: 5px"
             />
             LordTocs
