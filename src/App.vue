@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="#161616" dark>
       <div class="d-flex align-center">
-        <img src="stingers/tocs-slime.png" style="width: 50px" />
+        <img src="tocs-slime.png" style="width: 50px" />
         LordTocs
       </div>
 
