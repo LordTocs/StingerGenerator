@@ -4,7 +4,7 @@ module.exports = {
 
 	//Set the output dir to be in /stingers for Netlify proxying.
 	//outputDir: path.resolve(__dirname, "./dist/stingers/"),
-	publicPath: '/stingers/',
+	// publicPath: '/stingers/',
 
 	transpileDependencies: [
 		'vuetify'
